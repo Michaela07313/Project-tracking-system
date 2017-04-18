@@ -1,0 +1,19 @@
+{
+  "name": "project-tracking-system",
+  "version": "1.0.0",
+  "description": "Simple project tracking system (or ticketing system)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michaela07313/Project-tracking-system.git"
+  },
+  "author": "Mihaela Lukanova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Michaela07313/Project-tracking-system/issues"
+  },
+  "homepage": "https://github.com/Michaela07313/Project-tracking-system#readme"
+}

@@ -2,6 +2,7 @@ const express = require('express')
 
 let app = express()
 
+
 //set the environment
 let environment = process.env.NODE_ENV || 'developement'
 
@@ -10,6 +11,8 @@ let config = require('./server/config/config')[environment]
 
 //require the database
 require('./server/config/database')(config)
+
+require('./server/config/express')(app,config)
 
 //require all routes
 require('./server/routes')(app)

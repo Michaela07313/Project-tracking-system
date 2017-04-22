@@ -1,6 +1,12 @@
+const homeController = require('./controllers/home')
+
 module.exports = (app) => {
 
-  app.get('/', (req, res) => {
-    res.send("Hi!")
+  app.get('/', homeController.index)
+
+  app.all('*', (req, res) => {
+    res.status(404)
+    res.send('NOT FOUND')
+    res.end()
   })
 }

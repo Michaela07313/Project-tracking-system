@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/Michaela07313/Project-tracking-system/issues"
   },
-  "homepage": "https://github.com/Michaela07313/Project-tracking-system#readme"
+  "homepage": "https://github.com/Michaela07313/Project-tracking-system#readme",
+  "dependencies": {
+    "body-parser": "1.17.1",
+    "cookie-parser": "1.4.3",
+    "express": "4.15.2",
+    "hbs": "4.0.1",
+    "mongoose": "4.9.5"
+  }
 }

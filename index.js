@@ -8,6 +8,9 @@ let environment = process.env.NODE_ENV || 'developement'
 // require the information from config.js, based on the current environment - developemnt or production
 let config = require('./server/config/config')[environment]
 
+//require the database
+require('./server/config/database')(config)
+
 //require all routes
 require('./server/routes')(app)
 

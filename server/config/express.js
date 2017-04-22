@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 module.exports = (app, config) => {
 
@@ -8,5 +9,8 @@ module.exports = (app, config) => {
   
   // enable static files
   app.use(express.static(config.rootDir + '/public'))
+
+  //enable body-parser
+  app.use(bodyParser.urlencoded({ extended: true }))
 
 }

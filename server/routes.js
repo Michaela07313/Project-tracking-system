@@ -6,6 +6,7 @@ module.exports = (app) => {
   app.get('/', homeController.index)
 
   app.get('/users/register', userController.registerGet)
+  app.post('/users/register', userController.registerPost)
 
   app.all('*', (req, res) => {
     res.status(404)

@@ -19,4 +19,7 @@ module.exports = (config) => {
     dbConnection.on('error', (err) => {
         console.log(err)
     })
+
+    
+    require('../models/User')
 }

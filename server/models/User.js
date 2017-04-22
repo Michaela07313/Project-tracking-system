@@ -5,7 +5,7 @@ let userSchema = mongoose.Schema({
         password: {type: String, required: true},
         firstName: {type: String, required: true},
         lastName: {type: String, required: true},
-        type: {type: String, required: true},
+        type: {type: Boolean, default: false},
         roles: [String],
         salt: {type: String, required: true}
 })

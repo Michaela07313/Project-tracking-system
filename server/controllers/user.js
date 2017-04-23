@@ -70,7 +70,7 @@ module.exports = {
     res.redirect('/')
   },
   userProfile: (req, res) => {
-    let _id = req.user.id;
+    let _id = req.user.id
 
     User.findById(_id)
     .then(user => {

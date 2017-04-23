@@ -12,3 +12,4 @@ let userSchema = mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
+//User.find({}).exec().then(user => console.log(user))

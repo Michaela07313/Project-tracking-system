@@ -1,5 +1,6 @@
 const homeController = require('./controllers/home')
 const userController = require('./controllers/user')
+const projectController = require('./controllers/project')
 
 module.exports = (app) => {
 
@@ -16,6 +17,10 @@ module.exports = (app) => {
 
   //user profile
   app.get('/users/profile', userController.userProfile)
+
+  //projects
+  app.get('/projects/create', projectController.createGet)
+
 
   app.all('*', (req, res) => {
     res.status(404)

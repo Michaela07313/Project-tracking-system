@@ -7,6 +7,8 @@ let userSchema = mongoose.Schema({
         firstName: {type: String, required: true},
         lastName: {type: String, required: true},
         type: {type: Boolean, default: false},
+        createdProjects: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}],
+        projects: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}],
         roles: [String],
         salt: {type: String, required: true}
 })

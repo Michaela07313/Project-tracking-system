@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+let encryption = require('../helpFunctions/encryption')
 
 let userSchema = mongoose.Schema({
         email: {type: String, required: true, unique: true},
@@ -10,6 +11,18 @@ let userSchema = mongoose.Schema({
         salt: {type: String, required: true}
 })
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+
+userSchema.method({
+  authenticate: function (pass) {
+    let inputHashedPassword = encryption.generateHashedPassword(this.salt, pass)
+    if (inputHashedPassword === this.password) {
+      return true
+    } else {
+      return false
+    }
+  }
+})
+
+const User = mongoose.model('User', userSchema)
+module.exports = User
 //User.find({}).exec().then(user => console.log(user))

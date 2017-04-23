@@ -17,16 +17,7 @@ module.exports = () => {
       })
   }))
 
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-  /*passport.serializeUser((user, done) => {
+  passport.serializeUser((user, done) => {
     if (user) return done(null, user._id)
   })
 
@@ -35,5 +26,5 @@ passport.deserializeUser(function(user, done) {
       if (!user) return done(null, false)
       return done(null, user)
     })
-  })*/
+  })
 }

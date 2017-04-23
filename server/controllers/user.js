@@ -41,7 +41,28 @@ module.exports = {
         }
     })
   },
-  login: (req, res) => {
+  loginGet: (req, res) => {
     res.render('users/login')
+  },
+  loginPost: (req, res) => {
+    let userData = req.body
+
+    User.findOne({email: userData.email})
+    .then(user => {
+      if (!user || !user.authenticate(userData.password)) {
+        userData.errorMessage = 'Invalid password or username.'
+        res.render('users/login', userData)
+      } else {
+        req.logIn(user, (err) => {
+          if (err) {
+            user.errorMessage = 'Something went wrong. Try to login again.'
+            res.render('users/login', user)
+            return
+          }
+
+          res.redirect('/')
+        })
+      }
+    })
   }
 }

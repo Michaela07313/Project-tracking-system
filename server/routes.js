@@ -21,6 +21,7 @@ module.exports = (app) => {
   //projects
   app.get('/projects/create', projectController.createGet)
   app.post('/projects/create', projectController.createPost)
+  app.get('/projects/ownProjects', projectController.ownProjectsGet)
 
 
   app.all('*', (req, res) => {

@@ -82,4 +82,17 @@ module.exports = {
         }
     })
   },
+  ownProjectsGet: (req, res) => {
+      let loggedUser = req.user.id
+      
+      Project
+        .find({ $or: [ { creator: loggedUser }, { worker: loggedUser } ] })
+        .exec((err, projects) => {
+          if (err) console.log(err)
+          console.log(projects)
+          res.render('projects/ownProjects', {
+              projects: projects
+          })
+      })
+  }
 }

@@ -12,6 +12,7 @@ module.exports = (app) => {
  //login / logout
   app.get('/users/login', userController.loginGet)
   app.post('/users/login', userController.loginPost)
+  app.get('/users/logout', userController.logout)
 
   app.all('*', (req, res) => {
     res.status(404)

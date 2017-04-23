@@ -14,6 +14,9 @@ module.exports = (app) => {
   app.post('/users/login', userController.loginPost)
   app.get('/users/logout', userController.logout)
 
+  //user profile
+  app.get('/users/profile', userController.userProfile)
+
   app.all('*', (req, res) => {
     res.status(404)
     res.send('NOT FOUND')

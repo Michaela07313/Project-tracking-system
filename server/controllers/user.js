@@ -68,5 +68,13 @@ module.exports = {
   logout: (req, res) => {
     req.logout()
     res.redirect('/')
+  },
+  userProfile: (req, res) => {
+    let _id = req.user.id;
+
+    User.findById(_id)
+    .then(user => {
+      res.render('users/profile', {user: user})
+    })
   }
 }

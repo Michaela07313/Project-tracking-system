@@ -22,6 +22,14 @@ userSchema.method({
     } else {
       return false
     }
+  },
+  isCreator: function (project) {
+    if (!project) {
+        return false
+    }
+
+    let isAuthor = project.creator.equals(this.id)
+    return isAuthor
   }
 })
 

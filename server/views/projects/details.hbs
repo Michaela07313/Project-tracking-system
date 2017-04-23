@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Review your project</h3><br/><br/>
+                <div class="row">
+                  <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{project.jobNumber}}</div>
+                                </div>
+                                <div class="col-xs-9 text-left">
+                                    <div class="huge">{{project.title}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: left; padding: 10px;">
+                            <div>Status: {{project.status}}</div><br/>
+                            <div>Started on: {{project.date}}</div><br/>
+                            <div>Created by: {{project.creator.firstName}} {{project.creator.lastName}}</div><br/>
+                            <div>Assigned by: {{project.worker.firstName}} {{project.worker.lastName}}</div>
+                        </div>
+ 
+                            <div class="panel-footer">
+                                <span class="pull-right">Review comments</span>
+                                <span class="pull-left">Update</span><br/>
+                                <span class="pull-right"><a href="/">Go back</a></span>
+                                <span class="pull-left">Delete</span>
+                                <br/>
+                            </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

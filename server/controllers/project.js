@@ -89,10 +89,21 @@ module.exports = {
         .find({ $or: [ { creator: loggedUser }, { worker: loggedUser } ] })
         .exec((err, projects) => {
           if (err) console.log(err)
-          console.log(projects)
+
           res.render('projects/ownProjects', {
               projects: projects
           })
       })
+  },
+  details: (req, res) => {
+    let projectId = req.params.id
+    let populateQuery = [{path:'creator'}, {path:'worker'}]
+    
+    Project.findById(projectId)
+    .populate(populateQuery)
+    .then(project => {
+        //let isUserAuthorized = req.user.isCreator(project)
+        res.render('projects/details', {project: project})  
+    })
   }
 }

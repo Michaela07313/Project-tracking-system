@@ -23,12 +23,12 @@
                             <div>Status: {{project.status}}</div><br/>
                             <div>Started on: {{project.date}}</div><br/>
                             <div>Created by: {{project.creator.firstName}} {{project.creator.lastName}}</div><br/>
-                            <div>Assigned by: {{project.worker.firstName}} {{project.worker.lastName}}</div>
+                            <div>Assigned to: {{project.worker.firstName}} {{project.worker.lastName}}</div>
                         </div>
  
                             <div class="panel-footer">
                                 <span class="pull-right">Review comments</span>
-                                <span class="pull-left">Update</span><br/>
+                                <span class="pull-left"><a href="/projects/edit/{{project.id}}">Update</a></span><br/>
                                 <span class="pull-right"><a href="/">Go back</a></span>
                                 <span class="pull-left">Delete</span>
                                 <br/>

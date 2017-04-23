@@ -105,5 +105,24 @@ module.exports = {
         //let isUserAuthorized = req.user.isCreator(project)
         res.render('projects/details', {project: project})  
     })
+  },
+  edit: (req, res) => {
+      let projectId = req.params.id
+      let populateQuery = [{path:'creator'}, {path:'worker'}]
+      
+      Project.findById(projectId)
+      .populate(populateQuery)
+      .then(project => {
+          User
+          .find({})
+          .exec((err, users) => {
+            if (err) console.log(err)
+            
+            res.render('projects/edit', {
+                users: users,
+                project: project
+            })
+        })
+    })
   }
 }

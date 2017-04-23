@@ -23,6 +23,7 @@ module.exports = (app) => {
   app.post('/projects/create', projectController.createPost)
   app.get('/projects/ownProjects', projectController.ownProjectsGet)
   app.get('/projects/details/:id', projectController.details)
+  app.get('/projects/edit/:id', projectController.edit)
 
 
   app.all('*', (req, res) => {

@@ -35,4 +35,4 @@ userSchema.method({
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
-User.find({}).exec().then(user => console.log(user))
+//User.find({}).exec().then(user => console.log(user))

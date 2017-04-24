@@ -132,5 +132,33 @@ module.exports = {
     .then(project => {
         res.render('projects/comments', {project: project})  
     })
+  },
+  commentPost: (req, res) => {
+      req.body.project = {id: req.params.id}
+      let commentArgs = req.body
+      let projectId = req.params.id
+      let currentUserEmail = req.user.email
+
+      User.findOne({email: currentUserEmail})
+      .then(currentUser => {
+          if(!currentUser || currentUser.email != commentArgs.email) {
+              commentArgs.errorMessage = 'Incorrect email address.'
+              res.render('projects/comments', commentArgs)
+          } else {
+            Project.findByIdAndUpdate(projectId, {
+              $push: {'comments':
+                        {   email: req.user.id,
+                            content: commentArgs.content,
+                            commentDate: new Date()
+                        }
+                    },
+              new: true
+            })
+            .exec()
+            .then(
+                res.redirect('/projects/comments/' + projectId)
+            )
+         console.log(commentArgs.content)}
+      })
   }
 }

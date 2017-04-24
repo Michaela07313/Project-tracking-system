@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Add your comment</h3>
-                <form class="form-horizontal" method="post" action="/projects/details/{{project.id}}/comment">
+                <form class="form-horizontal" method="post" action="/projects/comments/{{project.id}}">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputEmail">Email</label>
@@ -12,9 +12,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputComment">Comment</label>
+                            <label class="col-sm-4 control-label" for="inputContent">Comment</label>
                             <div class="col-sm-4 ">
-                                <input type="text" class="form-control" id="inputComment" placeholder="Comment" name="comment" required value={{comment}} >
+                                <input type="text" class="form-control" id="inputContent" placeholder="Comment" name="content" required value={{content}}>
                             </div>
                         </div>
                         <div class="form-group">

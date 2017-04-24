@@ -21,6 +21,8 @@
     "cookie-parser": "1.4.3",
     "express": "4.15.2",
     "express-session": "1.15.2",
+    "handlebars-dateformat": "^1.0.1",
+    "handlebars-helpers": "0.8.2",
     "handlebars.moment": "1.0.4",
     "hbs": "4.0.1",
     "moment": "2.18.1",

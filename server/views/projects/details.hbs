@@ -4,7 +4,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Review your project</h3><br/><br/>
                 <div class="row">
-                  <div class="col-lg-3 col-md-6">
+                  <div class="col-lg-6 col-md-9" style="margin: auto;">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -21,14 +21,14 @@
                         </div>
                         <div style="text-align: left; padding: 10px;">
                             <div>Status: {{project.status}}</div><br/>
-                            <div>Started on: {{project.date}}</div><br/>
+                            <div>Started on: {{dateFormat project.date "D MMMM YYYY"}}</div><br/>
                             <div>Created by: {{project.creator.firstName}} {{project.creator.lastName}}</div><br/>
                             <div>Assigned to: {{project.worker.firstName}} {{project.worker.lastName}}</div>
                         </div>
  
                             <div class="panel-footer">
-                                <span class="pull-right">Review comments</span>
-                                <span class="pull-left"><a href="/projects/edit/{{project.id}}">Update</a></span><br/>
+                                <span class="pull-right"><a href="/projects/comments/{{project.id}}">Review comments</a></span>
+                                <span class="pull-left"><a href="/projects/edit/{{project.id}}">Update project information</a></span><br/>
                                 <span class="pull-right"><a href="/">Go back</a></span>
                                 <span class="pull-left">Delete</span>
                                 <br/>

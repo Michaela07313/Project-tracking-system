@@ -24,6 +24,7 @@ module.exports = (app) => {
   app.get('/projects/ownProjects', projectController.ownProjectsGet)
   app.get('/projects/details/:id', projectController.details)
   app.get('/projects/edit/:id', projectController.edit)
+  app.get('/projects/comments/:id', projectController.commentGet)
 
 
   app.all('*', (req, res) => {

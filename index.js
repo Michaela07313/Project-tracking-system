@@ -1,4 +1,5 @@
 const express = require('express')
+const hbs = require('hbs')
 
 let app = express()
 
@@ -20,6 +21,11 @@ require('./server/routes')(app)
 
 // require passport to authenticate the user
 require('./server/config/passport')()
+
+//format the date of the projects
+hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
+
+
 
 app.listen(config.port)
 console.log('Express app is running!')

@@ -1,7 +1,7 @@
 let Project = require('mongoose').model('Project')
 let User = require('mongoose').model('User')
 const passport = require('passport');
-const LocalPassport = require('passport-local');
+const LocalPassport = require('passport-local')
 
 module.exports = {
     createGet: (req, res) => {
@@ -123,6 +123,14 @@ module.exports = {
                 project: project
             })
         })
+    })
+  },
+  commentGet: (req, res) => {
+    let projectId = req.params.id
+    
+    Project.findById(projectId)
+    .then(project => {
+        res.render('projects/comments', {project: project})  
     })
   }
 }

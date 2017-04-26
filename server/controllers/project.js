@@ -170,5 +170,53 @@ module.exports = {
             )
         }
     })
+  },
+  update: (req, res) => {
+    let updatedProject = req.body
+    let projectID = req.params.id
+    let populateQuery = [{path:'createdProjects'}, {path:'projects'}]
+
+    Project.findById(projectID)
+    .then(foundProject => {
+        User.findOneAndUpdate({_id: foundProject.worker}, {
+            $pull: {
+                projects: projectID
+            },
+            new: true
+        })
+        .exec()
+    })
+    
+    
+    User.findOne({email: updatedProject.selectWorker})
+    .populate(populateQuery)
+    .then(existingUser => {
+
+        //update the project
+        Project.findByIdAndUpdate(projectID, {
+            $set: {
+                title: updatedProject.title,
+                worker: existingUser._id,
+                status: updatedProject.selectStatus,
+                updatedDate: new Date()
+            },
+            new: true
+        })
+        .exec()
+        .then(project => {
+            //update the Users table with the id of the worker
+            let index = existingUser.projects.indexOf(project._id)
+            if (index < 0) {
+                existingUser.projects.push(project._id)
+                existingUser.save(err => {
+                    if (err) {
+                        res.redirect('/', {errorMessage: 'Something went wrong. Please try to create the poject again.'})
+                    }
+                })
+            }
+            console.log('Successfuly updated')
+            res.redirect('/')
+        })
+    })
   }
 }

@@ -228,5 +228,31 @@ module.exports = {
       .then(project => {
           res.render('projects/delete', { project: project })
     })
+  },
+  deletePost: (req, res) => {
+      let projectId = req.params.id
+      let populateQuery = [{path:'creator'}, {path:'worker'}]
+
+      Project.findOneAndRemove({_id: projectId})
+        .populate(populateQuery)
+        .then(projectToDelete => {
+            User.findOneAndUpdate({_id: projectToDelete.worker}, {
+            $pull: {
+                projects: projectId
+            },
+            new: true
+        })
+        .exec()
+        
+        User.findOneAndUpdate({_id: projectToDelete.creator}, {
+            $pull: {
+                createdProjects: projectId
+            },
+            new: true
+        })
+        .exec()
+
+        res.redirect('/')
+    }) 
   }
 }

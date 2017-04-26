@@ -218,5 +218,15 @@ module.exports = {
             res.redirect('/')
         })
     })
+  },
+  deleteGet: (req, res) => {
+      let projectId = req.params.id
+      let populateQuery = [{path:'creator'}, {path:'worker'}]
+      
+      Project.findById(projectId)
+      .populate(populateQuery)
+      .then(project => {
+          res.render('projects/delete', { project: project })
+    })
   }
 }

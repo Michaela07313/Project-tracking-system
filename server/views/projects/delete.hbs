@@ -2,8 +2,8 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Update project</h3>
-                <form class="form-horizontal" method="post" action="/projects/edit/{{project.id}}">
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>Delete project</h3>
+                <form class="form-horizontal" method="post" action="/projects/delete/{{project.id}}">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputJobNumber">Job number:</label>
@@ -14,35 +14,25 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputTitle">Title</label>
                             <div class="col-sm-4 ">
-                                <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="title" required value={{project.title}} >
+                                {{project.title}}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label" for="inputWorker">Worker</label>
-                            <div class="col-sm-4 ">
-                                <select name="selectWorker">
-                                    {{#each users}}
-                                        <option name="{{this.email}}" value="{{this.email}}">{{this.email}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
+                             <label class="col-sm-4 control-label" for="inputWorker">Worker</label>
+                             <div class="col-sm-4 ">
+                                {{project.worker.firstName}} {{project.worker.lastName}} ({{project.worker.email}})
+                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputStatus">Status</label>
                             <div class="col-sm-4 ">
-                                <select name="selectStatus">
-                                    <option name="{{project.status}}" value="{{project.status}}">{{project.status}}</option>
-                                    <option name="open" value="open">open</option>
-                                    <option name="testing" value="testing">testing</option>
-                                    <option name="resolved" value="resolved">resolved</option>
-                                    <option name="closed" value="closed">closed</option>
-                                </select>
+                                {{project.status}}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label" for="inputCreator">Creatd by:</label>
                             <div class="col-sm-4 ">
-                                {{project.creator.firstName}} {{project.creator.lastName}}
+                                {{project.creator.firstName}} {{project.creator.lastName}} ({{project.creator.email}})
                             </div>
                         </div>
                         <div class="form-group">
@@ -56,7 +46,7 @@
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-4">
                                 <button type="reset" class="btn btn-default"><a href="/projects/details/{{project.id}}">Cancel</a></button>
-                                <button type="submit" href="/projects/edit/{{project.id}}" class="btn btn-primary">Update</button>
+                                <button type="submit" href="/projects/delete/{{project.id}}" class="btn btn-primary">Delete</button>
                             </div>
                         </div>
                     </fieldset>

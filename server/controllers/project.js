@@ -129,8 +129,18 @@ module.exports = {
     let projectId = req.params.id
     
     Project.findById(projectId)
+    .populate('comments.email')
     .then(project => {
-        res.render('projects/comments', {project: project})  
+        User
+        .find({})
+        .exec((err, users) => {
+            if (err) console.log(err)
+
+            res.render('projects/comments', {
+                users: users,
+                project: project
+            })
+        })
     })
   },
   commentPost: (req, res) => {
@@ -158,7 +168,7 @@ module.exports = {
             .then(
                 res.redirect('/projects/comments/' + projectId)
             )
-         console.log(commentArgs.content)}
-      })
+        }
+    })
   }
 }

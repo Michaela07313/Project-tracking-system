@@ -18,5 +18,4 @@ let projectSchema = mongoose.Schema({
 
 const Project = mongoose.model('Project', projectSchema)
 module.exports = Project
-//Project.find({'comments':}).exec().then(project => console.log(project))
 //Project.find({}).exec().then(project => console.log(project))

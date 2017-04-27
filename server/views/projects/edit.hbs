@@ -21,6 +21,7 @@
                             <label class="col-sm-4 control-label" for="inputWorker">Worker</label>
                             <div class="col-sm-4 ">
                                 <select name="selectWorker">
+                                    <option name="{{foundWorker.email}}" value="{{foundWorker.email}}">{{foundWorker.email}}</option>
                                     {{#each users}}
                                         <option name="{{this.email}}" value="{{this.email}}">{{this.email}}</option>
                                     {{/each}}

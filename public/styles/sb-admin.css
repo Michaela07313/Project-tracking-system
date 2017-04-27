@@ -225,3 +225,8 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.errorText {
+    color: red;
+    font-size: 20px;
+}

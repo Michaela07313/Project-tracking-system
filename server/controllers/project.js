@@ -11,9 +11,7 @@ module.exports = {
         .exec((err, users) => {
             if (err) console.log(err)
             
-            res.render('projects/create', {
-                users: users
-            })
+            res.render('projects/create', {users: users})
         })
     },
     createPost: (req, res) => {
@@ -24,10 +22,14 @@ module.exports = {
     Project.findOne({jobNumber: projctData.jobNumber})
     .then(existingJN => {
       if(existingJN) {
-        projctData.errorMessage = 'A project with this job number already exists.'
-        res.render('projects/create', projctData)
+          User
+          .find({})
+          .exec((err, users) => {
+              if (err) console.log(err)
+              
+              res.render('projects/create', {users: users, errorMessage: 'A project with this job number already exists.'})
+            })
       } else {
-          //search user by email
           User.findOne({email: projctData.selectWorker})
           .then(existingUser => {
 
@@ -117,21 +119,26 @@ module.exports = {
             res.redirect('/users/login')
             return
       }
-
+      
       Project.findById(projectId)
       .populate(populateQuery)
       .then(project => {
-          User
-          .find({})
-          .exec((err, users) => {
-            if (err) console.log(err)
-            
-            res.render('projects/edit', {
-                users: users,
-                project: project
-            })
-        })
-    })
+          User.findOne({email: project.worker.email})
+          .exec((err, foundWorker) => {
+              if (err) console.log(err)
+              
+              User.find({ email: { $nin: foundWorker.email} })
+              .exec((err, users) => {
+                  if (err) console.log(err)
+                  
+                  res.render('projects/edit', {
+                      foundWorker: foundWorker,
+                      users: users,
+                      project: project 
+                  })
+              })
+          })
+      })
   },
   commentGet: (req, res) => {
     let projectId = req.params.id

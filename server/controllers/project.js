@@ -2,6 +2,7 @@ let Project = require('mongoose').model('Project')
 let User = require('mongoose').model('User')
 const passport = require('passport');
 const LocalPassport = require('passport-local')
+const auth = require('../helpFunctions/authentication')
 
 module.exports = {
     createGet: (req, res) => {
@@ -102,7 +103,6 @@ module.exports = {
     Project.findById(projectId)
     .populate(populateQuery)
     .then(project => {
-        //let isUserAuthorized = req.user.isCreator(project)
         res.render('projects/details', {project: project})  
     })
   },
@@ -110,6 +110,14 @@ module.exports = {
       let projectId = req.params.id
       let populateQuery = [{path:'creator'}, {path:'worker'}]
       
+      if (!auth.isAssignedOrCreator(req, res, projectId)) {
+          let returnUrl = `/projects/edit/${projectId}`
+            req.session.returnUrl = returnUrl
+
+            res.redirect('/users/login')
+            return
+      }
+
       Project.findById(projectId)
       .populate(populateQuery)
       .then(project => {
@@ -148,6 +156,14 @@ module.exports = {
       let commentArgs = req.body
       let projectId = req.params.id
       let currentUserEmail = req.user.email
+
+      if (!auth.isAssignedOrCreator(req, res, projectId)) {
+          let returnUrl = `/projects/comments/${projectId}`
+            req.session.returnUrl = returnUrl
+
+            res.redirect('/users/login')
+            return
+      }
 
       User.findOne({email: currentUserEmail})
       .then(currentUser => {
@@ -222,6 +238,14 @@ module.exports = {
   deleteGet: (req, res) => {
       let projectId = req.params.id
       let populateQuery = [{path:'creator'}, {path:'worker'}]
+
+      if (!auth.isAssignedOrCreator(req, res, projectId)) {
+          let returnUrl = `/projects/delete/${projectId}`
+            req.session.returnUrl = returnUrl
+
+            res.redirect('/users/login')
+            return
+      }
       
       Project.findById(projectId)
       .populate(populateQuery)

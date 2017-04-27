@@ -22,17 +22,30 @@ userSchema.method({
     } else {
       return false
     }
-  },
-  isCreator: function (project) {
-    if (!project) {
-        return false
-    }
-
-    let isAuthor = project.creator.equals(this.id)
-    return isAuthor
   }
 })
 
 const User = mongoose.model('User', userSchema)
-module.exports = User
+//module.exports = User
 //User.find({}).exec().then(user => console.log(user))
+
+module.exports.seedAdminUser = () => {
+  User
+  .find({})
+  .then(users => {
+    if (users.length === 0) {
+      let salt = encryption.generateSalt()
+      let hashedPassword = encryption.generateHashedPassword(salt, '123')
+      console.log(users)
+      User
+      .create({
+        email: 'admin@gmail.com',
+        password: hashedPassword,
+        firstName: 'Michaela',
+        lastName: 'Lukanova',
+        roles: ['Admin'],
+        salt: salt
+      })
+    }
+  })
+}

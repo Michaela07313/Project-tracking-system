@@ -21,6 +21,6 @@ module.exports = (config) => {
     })
 
     
-    require('../models/User')
+    require('../models/User').seedAdminUser()
     require('../models/Project')
 }

@@ -18,6 +18,7 @@ module.exports = (app) => {
 
   //user profile
   app.get('/users/profile', userController.userProfile)
+  app.post('/users/profile/:id', userController.imgupload)
 
   //projects
   app.get('/projects/create', auth.isTeamLeader(true), projectController.createGet)

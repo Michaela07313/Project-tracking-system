@@ -10,7 +10,8 @@ let userSchema = mongoose.Schema({
         createdProjects: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}],
         projects: [{type: mongoose.Schema.Types.ObjectId, ref: 'Project'}],
         roles: [String],
-        salt: {type: String, required: true}
+        salt: {type: String, required: true},
+        image: { type: String, requred: false }
 })
 
 

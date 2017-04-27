@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const passport = require('passport')
+const fileUpload = require('express-fileupload')
 
 module.exports = (app, config) => {
 
@@ -34,4 +35,6 @@ module.exports = (app, config) => {
 
     next()
   })
+
+  app.use(fileUpload())
 }

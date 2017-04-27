@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     developement: {
         port: 7313,
-        db: 'mongodb://localhost:27017/projectTrackingSystemDB',
+        db: 'mongodb://localhost:27017/projectTrackingSystemDB_2',
         rootDir: path.normalize(path.join(__dirname, '/../../'))
     },
     production: {

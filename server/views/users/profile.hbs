@@ -6,6 +6,20 @@
                 <p><b>First name:</b> {{user.firstName}}</p>
                 <p><b>Last name:</b> {{user.lastName}}</p>
                 <p><b>Email:</b> {{user.email}}</p>
+                {{#if user.image}}
+                    <p><b>Avatar:</b> <img class="image-avatar" src="/../../images/{{user.image}}"/></p>
+                {{/if}}
+                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="/users/profile/{{user.id}}">
+                    <fieldset>
+                        <div class="form-group">
+                            <input type="file" name="image" accept="image/*">
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <button type="submit" class="btn btn-primary">Upload your profile picture</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>

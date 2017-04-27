@@ -230,3 +230,9 @@ ul.alert-dropdown {
     color: red;
     font-size: 20px;
 }
+
+.image-avatar {
+    max-width: 500px;
+    height: auto;
+    display: block
+}

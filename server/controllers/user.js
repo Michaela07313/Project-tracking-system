@@ -76,5 +76,42 @@ module.exports = {
     .then(user => {
       res.render('users/profile', {user: user})
     })
+  },
+  imgupload: (req, res, next) => {
+    let image
+    let uploadedImage = req.body
+    let userId = req.user.id
+    if (!req.files) {
+      res.render('users/profile')
+      return
+    }
+    
+    console.log('uploadedImage: ', uploadedImage)
+    console.log('req.files', req.files)
+
+    image = req.files.image
+    console.log('image: ', image)
+    uploadedImage.image = req.files.image.name
+    console.log('newcreatedImage: ', uploadedImage)
+    
+    if (uploadedImage.image !== '') {
+        image.mv('./public/images/' + req.files.image.name, (err) => {
+          if (err) {
+            res.status(500).send(err)
+          } else {
+            User
+            .findByIdAndUpdate(userId, {
+              $set: {
+                image: uploadedImage.image
+              },
+            new: true
+          })
+          .exec()
+          .then(updatedUser => {
+            res.redirect('/')
+          })
+        }
+      })
+    }
   }
 }

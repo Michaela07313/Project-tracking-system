@@ -33,5 +33,12 @@ module.exports = {
       } else {
           return false
       }
+  },
+  isCreatorOrAdmin: (req, res, projectId) => {
+    if (req.user && (req.user.createdProjects.indexOf(projectId) > - 1 || req.user.roles.indexOf('Admin') > -1)) {
+      return true
+    } else {
+      return false
+    }
   }
 }

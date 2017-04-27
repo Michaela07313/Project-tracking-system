@@ -172,12 +172,12 @@ module.exports = {
             return
       }
 
-      User.findOne({email: currentUserEmail})
+     /* User.findOne({email: currentUserEmail})
       .then(currentUser => {
           if(!currentUser || currentUser.email != commentArgs.email) {
               commentArgs.errorMessage = 'Incorrect email address.'
               res.render('projects/comments', commentArgs)
-          } else {
+          } else {*/
             Project.findByIdAndUpdate(projectId, {
               $push: {'comments':
                         {   email: req.user.id,
@@ -191,8 +191,6 @@ module.exports = {
             .then(
                 res.redirect('/projects/comments/' + projectId)
             )
-        }
-    })
   },
   update: (req, res) => {
     let updatedProject = req.body
@@ -246,7 +244,7 @@ module.exports = {
       let projectId = req.params.id
       let populateQuery = [{path:'creator'}, {path:'worker'}]
 
-      if (!auth.isAssignedOrCreator(req, res, projectId)) {
+      if (!auth.isCreatorOrAdmin(req, res, projectId)) {
           let returnUrl = `/projects/delete/${projectId}`
             req.session.returnUrl = returnUrl
 
